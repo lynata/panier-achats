@@ -1,7 +1,7 @@
 import Entete from './Entete';
 import Pieds2Page from './Pieds2Page';
 import ListeProduits from './ListeProduits';
-import './Page.css';
+import './Page.scss';
 
 export default function Page() {
   return ( //element pour mettre dans linterface

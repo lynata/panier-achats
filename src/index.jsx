@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import Page from './Page'; //importe fonction page du fichier page.js
 
 ReactDOM.render(

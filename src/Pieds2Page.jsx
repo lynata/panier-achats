@@ -1,4 +1,4 @@
-import './Pieds2Page.css';
+import './Pieds2Page.scss';
 
 export default function Pieds2Page(props) {
     // obtenir l'annee courante
