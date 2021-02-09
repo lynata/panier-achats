@@ -1,7 +1,8 @@
 import './Produit.scss';
 import BtnAjouterPanier from './BtnAjouterPanier';
 
-function Produit(props) {
+export default function Produit(props) {
+    
     return(
         <li className="Produit">
             <div className="image">
@@ -16,4 +17,3 @@ function Produit(props) {
     );
 }
 
-export default Produit;
