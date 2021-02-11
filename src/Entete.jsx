@@ -6,9 +6,9 @@ import { useState } from 'react';
 
 export default function Entete(props) {
     // const etatCacherSommairePanier = useState(true);
-    // console.log("La variable statCacherSomPan : " + etatCacherSommairePanier);
+    // console.log("La variable statCacherSomPan : " , etatCacherSommairePanier);
 
-    // // Array DESTRUCTURING (decompasition des tableaux et objets)
+    // // Array/Object DESTRUCTURING (decomposition des tableaux et objets)
     
     // const valeurEtatCacher = etatCacherSommairePanier[0];
     // console.log("valeur etat : " , valeurEtatCacher);
@@ -17,13 +17,13 @@ export default function Entete(props) {
     // console.log("fonction qui modifie letat : " , fonctionSetEtatCacher);
 
     // avec la decompasition de tableau, cest plus facile!
-    const[cacheSommaire, setCacheSommaire] = useState(true);
+    const [cacheSommaire, setCacheSommaire] = useState(true);
     // console.log("etat du sp :", cacheSommaire);
 
     // const basculerSommairePanier = function() {
     //     setCacheSommaire(cacheSommaire?false:true);
     // }
-    const basculerSommairePanier = () => setCacheSommaire? false : true;
+    const basculerSommairePanier = () => setCacheSommaire(cacheSommaire ? false : true);
 
     return (
         <header className="Entete">
@@ -38,7 +38,7 @@ export default function Entete(props) {
                     <Badge onClick={basculerSommairePanier} badgeContent="5" color="primary">
                         <ShoppingCartIcon/> 
                     </Badge>
-                    <SommairePanier cacher={cacheSommaire}/>
+                    <SommairePanier cacher={cacheSommaire} etatPanier={props.etatPanier}/>
                 </li>
                 <li>Mon compte</li>
             </ul>
