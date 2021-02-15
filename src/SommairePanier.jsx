@@ -3,15 +3,15 @@ import './SommairePanier.scss';
 export default function SommairePanier(props) {
     // console.log("sommaire panier : ", props.etatPanier);
     const [panier, setPanier] = props.etatPanier;
-    const inforPanier = retournerInforPanier(panier);
+    const infoPanier = retournerInforPanier(panier);
     return (
-        <div className={'SommairePanier' + (props.cacher?' cacher':'')}>
-           <span className="nbArticles">Articles differents : </span>
-           <span className="qteArticles">Articles total : </span>
-           <span className="sousTotal">Sous-total : </span>
-           <span className="tps">TPS : </span>
-           <span className="tvq">TVQ : </span>
-           <span className="total">total : </span>
+        <div className={'SommairePanier' + (props.cacher ? ' cacher' : '')}>
+            <span className="nbArticles">Articles differents : {infoPanier.nbArticles} </span>
+            <span className="qteArticles">Articles total : {infoPanier.qtArticles} </span>
+            <span className="sousTotal">Sous-total : {infoPanier.st} </span>
+            <span className="tps">TPS : {infoPanier.tps} </span>
+            <span className="tvq">TVQ : {infoPanier.tvq} </span>
+            <span className="total">total : {infoPanier.total} </span>
         </div>
     );
 }
@@ -21,7 +21,7 @@ function retournerInforPanier(pan) {
 
     // sortir les articles e tles mettre dans un tableau
     let articles = Object.values(pan);
-    console.log(articles);
+    // console.log(articles);
 
     // nbr aricles differents
     info.nbArticles = articles.lenght;
@@ -36,13 +36,24 @@ function retournerInforPanier(pan) {
     // info.qteArticles = qteTotale;
 
     //meilleure facon
-
-    info.qteArticles = articles.reduce(function(valInit, valCourante) {
-        return valCourante.qte + valInit;
+    info.qtArticles = articles.reduce(function(valInit, valCour) {
+        return valCour.qte + valInit;
     }, 0);
+    // info.qteArticles = articles.reduce((accumulateur, articleCourant) => articleCourant.prix * articleCourant.qte + accumulateur, 0);
 
     //sous total
-    let sousTotal = articles.reduce((i,c) => c.prix*c.qte + i, 0);
+    let sousTotal = articles.reduce((accumulateur, articleCourant) => articleCourant.prix * articleCourant.qte + accumulateur, 0);
+    info.st = sousTotal.toFixed(2);
 
-    console.log(sousTotal);
+    //tps
+    let tps = (sousTotal * 0.05);
+    info.tps = tps.toFixed(2);
+
+    let tvq = sousTotal * 0.09975;
+    info.tvq = tvq.toFixed(2);
+
+    info.total = (sousTotal + tps + tvq).toFixed(2);
+
+    return info;
+    // console.log(sousTotal);
 }

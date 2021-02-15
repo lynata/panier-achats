@@ -15,7 +15,9 @@ export default function Produit(props) {
             panier[props.id] = {prix: props.prix, qte: 1}
         }
         // mntnt il faut changer letat du panuer avec setPanier
-        setPanier(panier);
+        // il faut passer a setPanier un NOUVEL objet (obtenu par clonage)
+        // setPanier(JSON.parse(JSON.stringify(panier))); 
+        setPanier({...panier})
         console.log(panier);
     }
     return(

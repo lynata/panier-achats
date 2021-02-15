@@ -6,4 +6,12 @@
     bottom: -40px;
     padding: 5px;
     font-size: 0.9em;
+
+    span:not(:last-of-type) {
+        padding-right: 5px;
+        &::after {
+            content: '|';
+            display: inline;
+        }
+    }
 }

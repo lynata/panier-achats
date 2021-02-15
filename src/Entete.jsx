@@ -25,6 +25,11 @@ export default function Entete(props) {
     // }
     const basculerSommairePanier = () => setCacheSommaire(cacheSommaire ? false : true);
 
+    const [panier, setPanier] = props.etatPanier;
+    
+    //calculer le nombre darticle total du panier
+    const nbArticles = Object.values(panier).reduce((accumulateur, eltCourant) => accumulateur + eltCourant.qte, 0);
+    // console.log("tableau des articles dans le panier : ", articlesTab);
     return (
         <header className="Entete">
             <div>Logo</div>
@@ -35,7 +40,7 @@ export default function Entete(props) {
             </ul>
             <ul className="navUtil">
                 <li>
-                    <Badge onClick={basculerSommairePanier} badgeContent="5" color="primary">
+                    <Badge onClick={basculerSommairePanier} badgeContent={nbArticles} color="primary">
                         <ShoppingCartIcon/> 
                     </Badge>
                     <SommairePanier cacher={cacheSommaire} etatPanier={props.etatPanier}/>
