@@ -1,13 +1,14 @@
 import './Produit.scss';
 import BtnAjouterPanier from './BtnAjouterPanier';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
 export default function Produit(props) {
-    console.log("Panier dans Produit : " , props.etatPanier);
+    // console.log("Panier dans Produit : " , props.etatPanier);
+    const [panier, setPanier] = props.etatPanier;
     /**
      * Ajoute l'article au panier
      */
     function ajouterArticle(){
-        const [panier, setPanier] = props.etatPanier;
         if(panier[props.id]) {
             panier[props.id].qte++;
         }
@@ -16,10 +17,21 @@ export default function Produit(props) {
         }
         // mntnt il faut changer letat du panuer avec setPanier
         // il faut passer a setPanier un NOUVEL objet (obtenu par clonage)
-        // setPanier(JSON.parse(JSON.stringify(panier))); 
-        setPanier({...panier})
-        console.log(panier);
+        setPanier(JSON.parse(JSON.stringify(panier))); 
+        // setPanier({...panier})
+        // console.log(panier);
     }
+
+    // etat du btn
+    let btnTexte = "Ajouter au panier"
+    let btnQte = 0;
+    let btnCouleurCls = "";
+    if(panier[props.id]) {
+        btnTexte = <AddShoppingCartIcon/>; //jsx  javascript syntax extension
+        btnQte = panier[props.id].qte;
+        btnCouleurCls = "rouge";
+    }
+
     return(
         <li className="Produit">
             <div className="image">
@@ -28,7 +40,11 @@ export default function Produit(props) {
             <div className="info">
                 <h3>{props.nom}</h3>
                 <p className="prix">{props.prix} $CA</p>
-                <BtnAjouterPanier onClick={ajouterArticle}/>
+                <BtnAjouterPanier onClick={ajouterArticle} 
+                    texte={btnTexte}
+                    qte={btnQte}
+                    couleur={btnCouleurCls}
+                />
             </div>
         </li>
     );

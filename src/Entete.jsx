@@ -23,7 +23,7 @@ export default function Entete(props) {
     // const basculerSommairePanier = function() {
     //     setCacheSommaire(cacheSommaire?false:true);
     // }
-    const basculerSommairePanier = () => setCacheSommaire(cacheSommaire ? false : true);
+    const basculerSommairePanier = () => setCacheSommaire(!cacheSommaire);
 
     const [panier, setPanier] = props.etatPanier;
     
