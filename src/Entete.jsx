@@ -3,7 +3,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import SommairePanier from './SommairePanier';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 export default function Entete(props) {
     // const etatCacherSommairePanier = useState(true);
@@ -35,9 +35,9 @@ export default function Entete(props) {
         <header className="Entete">
             <div><Link to="/">Logo</Link></div>
             <ul className="navPrincipale">
-                <li><Link to="/nos-produits">Produit</Link></li>
-                <li><Link to="/a-propos-de-magasin">A propos de nous</Link></li>
-                <li><Link to="/contact">Contactez-nous</Link></li>
+                <li><NavLink to="/nos-produits" activeClassName="navActive">Produit</NavLink></li>
+                <li><NavLink to="/a-propos-de-magasin" activeClassName="navActive">A propos de nous</NavLink></li>
+                <li><NavLink to="/contact" activeClassName="navActive">Contactez-nous</NavLink></li>
             </ul>
             <ul className="navUtil">
                 <li>
